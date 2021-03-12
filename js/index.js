@@ -5,7 +5,7 @@ if (storageItems != null) {
   cartItems = storageItems;
 }
 const cart = document.querySelector("#cart-button");
-
+const notification = document.querySelector(".notification");
 cart.addEventListener("click", () => {
   let cartList = document.querySelector(".cart-items");
 
@@ -136,6 +136,8 @@ function addToCart(e) {
     cartItems.push(selectedProduct);
   }
   saveToLocalStorate(cartItems);
+  enterNotification("add");
+
   renderCart();
 }
 function removeFromCart(e) {
@@ -152,6 +154,7 @@ function removeFromCart(e) {
     cartItems.splice(selectedProductIndex, 1)[0];
   }
   saveToLocalStorate(cartItems);
+  enterNotification("delete");
   renderCart();
 }
 
@@ -161,6 +164,7 @@ function clearCart() {
     product.quantity = 1;
   });
   saveToLocalStorate(cartItems);
+  enterNotification("clear");
   renderCart();
 }
 
@@ -170,4 +174,20 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
 
 function saveToLocalStorate(items) {
   localStorage.setItem("demo-cart", JSON.stringify(items));
+}
+
+function enterNotification(status) {
+  if (status == "add") {
+    notification.innerHTML = "Item Added to Cart";
+  } else if (status == "delete") {
+    notification.innerHTML = "Item Removed from Cart";
+  } else if (status == "clear") {
+    notification.innerHTML = "Cart Cleared!";
+  }
+  notification.classList = "notification";
+  notification.classList.add("entry");
+  setTimeout(() => {
+    notification.classList = "notification";
+    notification.classList.add("exit");
+  }, 1000);
 }

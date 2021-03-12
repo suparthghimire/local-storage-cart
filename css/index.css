@@ -15,6 +15,7 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 15px;
     background-color: white;
     box-shadow: 0 0 6px 0 #2a2a2a4d;
@@ -104,11 +105,11 @@ button:hover {
 
 @keyframes entry {
     0% {
-        transform: translateX(100%);
+        transform: translateX(-500%) scale(0);
         opacity: 0;
     }
     100% {
-        transform: translateX(0%);
+        transform: translateX(0%) scale(1);
         opacity: 1;
     }
 }
@@ -120,11 +121,11 @@ button:hover {
 
 @keyframes exit {
     0% {
-        transform: translateX(0%);
+        transform: translateX(0%) scale(1);
         opacity: 1;
     }
     100% {
-        transform: translateX(-150%);
+        transform: translateX(150%) scale(0);
         opacity: 0;
     }
 }
@@ -154,4 +155,17 @@ tr {
 
 .cart-footer p {
     width: 100%;
+}
+
+.notification {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 20px;
+    background: rgb(92, 245, 199);
+    border-radius: 5px;
+    color: #2a2a2a;
+    font-weight: bold;
+    transform: translateX(-100%);
+    opacity: 0;
 }
