@@ -1,5 +1,5 @@
 let products = [];
-let cartItems = [];
+let cartItems = JSON.parse(localStorage.getItem("demo-cart"));
 
 const cart = document.querySelector("#cart-button");
 
@@ -17,10 +17,6 @@ cart.addEventListener("click", () => {
 
 function renderCart() {
   let sum = 0;
-
-  let storageItems = JSON.parse(localStorage.getItem("demo-cart"));
-
-  cartItems = storageItems;
 
   if (cartItems.length <= 0) {
     document.querySelector(".cart-items").innerHTML = "Cart is Empty";
@@ -96,14 +92,10 @@ function renderCart() {
 }
 
 function generateProducts() {
-  const random = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min);
-  };
-
   for (let i = 1; i <= 8; i++) {
     let product = {};
     product.name = "Product " + i;
-    product.price = random(50, 800);
+    product.price = i * 10 * 10 + 40;
     product.id = i;
     product.quantity = 1;
     products.push(product);
@@ -165,7 +157,7 @@ function clearCart() {
   products.forEach((product) => {
     product.quantity = 1;
   });
-  console.log(cartItems);
+  saveToLocalStorate(cartItems);
   renderCart();
 }
 
