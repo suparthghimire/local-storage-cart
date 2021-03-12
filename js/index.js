@@ -1,6 +1,9 @@
 let products = [];
-let cartItems = JSON.parse(localStorage.getItem("demo-cart"));
-
+let cartItems = [];
+let storageItems = JSON.parse(localStorage.getItem("demo-cart"));
+if (storageItems != null) {
+  cartItems = storageItems;
+}
 const cart = document.querySelector("#cart-button");
 
 cart.addEventListener("click", () => {
